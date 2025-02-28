@@ -1,6 +1,18 @@
-const app = require("express");
+const app = require("express")();
 const consign = require("consign");
 
-consign().then("./config/middlewares.js").into(app);
+const PORT = 3000;
 
-console.log("Is running!")
+consign()
+  .then("./src/config/middlewares.js")
+  .then("./src/api")
+  .then("./src/config/routes.js")
+  .into(app);
+
+app.get("/", (_, res) => {
+  res.send("Server is online");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running at PORT: ${PORT}`);
+});
