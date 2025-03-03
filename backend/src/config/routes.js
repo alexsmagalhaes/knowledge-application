@@ -1,7 +1,18 @@
 module.exports = (app) => {
-  const save = app.src.api.user.save;
-  const get = app.src.api.user.get;
+  const usersSave = app.src.api.user.save;
+  const usersGet = app.src.api.user.get;
+  app.route("/users").post(usersSave).get(usersGet);
+  app.route("/users/:id").put(usersSave);
 
-  app.route("/users").post(save).get(get);
-  app.route("/users/:id").put(save);
+  const categoriesSave = app.src.api.category.save;
+  const categoriesGetAll = app.src.api.category.get;
+  app.route("/categories").get(categoriesGetAll).post(categoriesSave);
+
+  const categoriesGetById = app.src.api.category.getById;
+  const categoriesDelete = app.src.api.category.remove;
+  app
+    .route("/categories/:id")
+    .get(categoriesGetById)
+    .put(categoriesSave)
+    .delete(categoriesDelete);
 };
