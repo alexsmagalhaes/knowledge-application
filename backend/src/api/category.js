@@ -13,7 +13,6 @@ module.exports = (app) => {
     }
 
     if (category.id) {
-          
       app
         .db("categories")
         .update(category)
@@ -89,7 +88,7 @@ module.exports = (app) => {
   const get = (req, res) => {
     app
       .db("categories")
-      .then((categories) => res.json(categories))
+      .then((categories) => res.json(withPath(categories)))
       .catch((msg) => res.status(500).send(msg));
   };
 
