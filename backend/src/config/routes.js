@@ -18,4 +18,7 @@ module.exports = (app) => {
     .get(categoriesGetById)
     .put(categoriesSave)
     .delete(categoriesDelete);
+
+  const articlesSave = app.src.api.article.save;
+  app.route("/articles").post(articlesSave);
 };
