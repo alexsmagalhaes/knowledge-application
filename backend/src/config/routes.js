@@ -21,4 +21,7 @@ module.exports = (app) => {
 
   const articlesSave = app.src.api.article.save;
   app.route("/articles").post(articlesSave);
+
+  const articlesRemove = app.src.api.article.remove;
+  app.route("/articles/:id").delete(articlesRemove);
 };
