@@ -20,7 +20,9 @@ module.exports = (app) => {
     .delete(categoriesDelete);
 
   const articlesSave = app.src.api.article.save;
+  const articlesGetAll = app.src.api.article.get;
   app.route("/articles").post(articlesSave);
+  app.route("/articles").get(articlesGetAll);
 
   const articlesRemove = app.src.api.article.remove;
   app.route("/articles/:id").delete(articlesRemove);
