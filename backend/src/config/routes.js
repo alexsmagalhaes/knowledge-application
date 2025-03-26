@@ -8,6 +8,9 @@ module.exports = (app) => {
   const categoriesGetAll = app.src.api.category.get;
   app.route("/categories").get(categoriesGetAll).post(categoriesSave);
 
+  const categoriesGetTree = app.src.api.category.getTree;
+  app.route("/categories/tree").get(categoriesGetTree);
+
   const categoriesGetById = app.src.api.category.getById;
   const categoriesDelete = app.src.api.category.remove;
   app

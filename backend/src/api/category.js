@@ -34,23 +34,23 @@ module.exports = (app) => {
 
   const remove = async (req, res) => {
     try {
-      existsOrError(req.params.id, "Código da Categoria não informado.");
+      existsOrError(req.params.id, "Category Code not provided");
 
       const subcategory = await app
         .db("categories")
         .where({ parentId: req.params.id });
-      notExistsOrError(subcategory, "Categoria possui subcategorias.");
+      notExistsOrError(subcategory, "Category has subcategories");
 
       const articles = await app
         .db("articles")
         .where({ categoryId: req.params.id });
-      notExistsOrError(articles, "Categoria possui artigos.");
+      notExistsOrError(articles, "Category has articles");
 
       const rowsDeleted = await app
         .db("categories")
         .where({ id: req.params.id })
         .del();
-      existsOrError(rowsDeleted, "Categoria não foi encontrada.");
+      existsOrError(rowsDeleted, "Category not found");
 
       res.status(204).send();
     } catch (msg) {
@@ -59,28 +59,36 @@ module.exports = (app) => {
   };
 
   const withPath = (categories) => {
-    const getParent = (categories, parentId) => {
-      const parent = categories.filter((parent) => parent.id === parentId);
-      return parent.length ? parent[0] : null;
-    };
+    const categoryMap = {};
+    const categoriesWithPath = [];
 
-    const categoriesWithPath = categories.map((category) => {
+    categories.forEach((category) => {
+      categoryMap[category.id] = { ...category, path: category.name };
+    });
+
+    const buildPath = (category) => {
       let path = category.name;
-      let parent = getParent(categories, category.parentId);
+      let currentCategory = categoryMap[category.parentId];
+      const visited = new Set();
 
-      while (parent) {
-        path = `${parent.name} > ${path}`;
-        parent = getParent(categories, parent.parentId);
+      while (currentCategory) {
+        if (visited.has(currentCategory.id)) {
+          break;
+        }
+        visited.add(currentCategory.id);
+        path = `${currentCategory.name} > ${path}`;
+        currentCategory = categoryMap[currentCategory.parentId];
       }
 
-      return { ...category, path };
+      return path;
+    };
+
+    categories.forEach((category) => {
+      category.path = buildPath(category);
+      categoriesWithPath.push(category);
     });
 
-    categoriesWithPath.sort((a, b) => {
-      if (a.path < b.path) return -1;
-      if (a.path > b.path) return 1;
-      return 0;
-    });
+    categoriesWithPath.sort((a, b) => a.path.localeCompare(b.path));
 
     return categoriesWithPath;
   };
@@ -89,20 +97,42 @@ module.exports = (app) => {
     app
       .db("categories")
       .then((categories) => res.json(withPath(categories)))
-      .catch((msg) => res.status(500).send(msg));
+      .catch((err) => res.status(500).send(err));
   };
 
   const getById = (req, res) => {
+    try {
+      app
+        .db("categories")
+        .where({ id: req.params.id })
+        .first()
+        .then((category) => {
+          existsOrError(category, "Category does not exist");
+          return res.json(category);
+        })
+        .catch((msg) => {
+          res.status(404).send(msg);
+        });
+    } catch (msg) {
+      res.status(400).send(msg);
+    }
+  };
+
+  const toTree = (categories, tree) => {
+    if (!tree) tree = categories.filter((c) => !c.parentId);
+    tree = tree.map((parentNode) => {
+      const isChild = (node) => node.parentId == parentNode.id;
+      parentNode.children = toTree(categories, categories.filter(isChild));
+      return parentNode;
+    });
+    return tree;
+  };
+
+  const getTree = (req, res) => {
     app
       .db("categories")
-      .where({ id: req.params.id })
-      .first()
-      .then((category) => {
-        res.json(category);
-      })
-      .catch((msg) => {
-        res.status(500).send(msg);
-      });
+      .then((categories) => res.json(toTree(categories)))
+      .catch((err) => res.status(500).send(err));
   };
 
   return {
@@ -110,5 +140,6 @@ module.exports = (app) => {
     remove,
     get,
     getById,
+    getTree,
   };
 };
