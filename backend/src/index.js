@@ -2,9 +2,11 @@ const app = require("express")();
 const consign = require("consign");
 const db = require("./config/db");
 
+require("dotenv").config();
+
 app.db = db;
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 consign()
   .then("./src/config/middlewares.js")
