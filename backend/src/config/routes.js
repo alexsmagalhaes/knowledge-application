@@ -28,4 +28,7 @@ module.exports = (app) => {
   const articlesById = app.src.api.article.getById;
   app.route("/articles/:id").delete(articlesRemove);
   app.route("/articles/:id").get(articlesById);
+
+  const articlesGetByCategory = app.src.api.article.getById;
+  app.route("/categories/:id/articles").get(articlesGetByCategory);
 };
