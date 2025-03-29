@@ -1,4 +1,12 @@
 module.exports = (app) => {
+  const userSignUp = app.src.api.user.save;
+  const userSignIn = app.src.api.auth.signin;
+  const userValidate = app.src.api.auth.validateToken;
+
+  app.post("/signup", userSignUp);
+  app.post("/signin", userSignIn);
+  app.post("/validateToken", userValidate);
+
   const usersSave = app.src.api.user.save;
   const usersGet = app.src.api.user.get;
   app.route("/users").post(usersSave).get(usersGet);
