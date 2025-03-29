@@ -9,6 +9,7 @@ app.db = db;
 const PORT = process.env.PORT;
 
 consign()
+  .include("./src/config/passport.js")
   .then("./src/config/middlewares.js")
   .then("./src/api/validation.js")
   .then("./src/api")
