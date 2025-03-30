@@ -55,4 +55,7 @@ module.exports = (app) => {
     .route("/categories/:id/articles")
     .all(protectedRoute)
     .get(articlesGetByCategory);
+
+  const getStats = app.src.api.stat.get;
+  app.route("/stats").all(protectedRoute).get(getStats);
 };
