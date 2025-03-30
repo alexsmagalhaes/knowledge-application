@@ -74,5 +74,25 @@ module.exports = (app) => {
       });
   };
 
-  return { save, get };
+  const remove = async (req, res) => {
+    try {
+      const articles = await app
+        .db("articles")
+        .where({ userId: req.params.id });
+      notExistsOrError(articles, "User has articles");
+
+      const rowsUpdated = app
+        .db("users")
+        .update({ deletedAt: new Date() })
+        .where({ id: req.params.id });
+
+      existsOrError(rowsUpdated, "User not found");
+
+      res.status(204).send();
+    } catch (msg) {
+      res.status(400).send(msg);
+    }
+  };
+
+  return { save, get, remove };
 };

@@ -13,12 +13,17 @@ module.exports = (app) => {
 
   const usersSave = app.src.api.user.save;
   const usersGet = app.src.api.user.get;
+  const userDelete = app.src.api.user.remove;
   app
     .route("/users")
     .all(protectedRoute)
     .post(admin(usersSave))
     .get(admin(usersGet));
-  app.route("/users/:id").all(protectedRoute).put(admin(usersSave));
+  app
+    .route("/users/:id")
+    .all(protectedRoute)
+    .put(admin(usersSave))
+    .delete(admin(userDelete));
 
   const categoriesSave = app.src.api.category.save;
   const categoriesGetAll = app.src.api.category.get;
