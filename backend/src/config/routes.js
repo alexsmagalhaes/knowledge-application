@@ -1,3 +1,5 @@
+const admin = require("./admin");
+
 module.exports = (app) => {
   const protectedRoute = app.src.config.passport.authenticate();
 
@@ -11,16 +13,20 @@ module.exports = (app) => {
 
   const usersSave = app.src.api.user.save;
   const usersGet = app.src.api.user.get;
-  app.route("/users").all(protectedRoute).post(usersSave).get(usersGet);
-  app.route("/users/:id").all(protectedRoute).put(usersSave);
+  app
+    .route("/users")
+    .all(protectedRoute)
+    .post(admin(usersSave))
+    .get(admin(usersGet));
+  app.route("/users/:id").all(protectedRoute).put(admin(usersSave));
 
   const categoriesSave = app.src.api.category.save;
   const categoriesGetAll = app.src.api.category.get;
   app
     .route("/categories")
     .all(protectedRoute)
-    .get(categoriesGetAll)
-    .post(categoriesSave);
+    .get(admin(categoriesGetAll))
+    .post(admin(categoriesSave));
 
   const categoriesGetTree = app.src.api.category.getTree;
   app.route("/categories/tree").all(protectedRoute).get(categoriesGetTree);
@@ -31,23 +37,24 @@ module.exports = (app) => {
     .route("/categories/:id")
     .all(protectedRoute)
     .get(categoriesGetById)
-    .put(categoriesSave)
-    .delete(categoriesDelete);
+    .put(admin(categoriesSave))
+    .delete(admin(categoriesDelete));
 
   const articlesSave = app.src.api.article.save;
   const articlesGetAll = app.src.api.article.get;
   app
     .route("/articles")
     .all(protectedRoute)
-    .post(articlesSave)
-    .get(articlesGetAll);
+    .post(admin(articlesSave))
+    .get(admin(articlesGetAll));
 
   const articlesRemove = app.src.api.article.remove;
   const articlesById = app.src.api.article.getById;
   app
     .route("/articles/:id")
     .all(protectedRoute)
-    .delete(articlesRemove)
+    .delete(admin(articlesRemove))
+    .put(admin(articlesSave))
     .get(articlesById);
 
   const articlesGetByCategory = app.src.api.article.getById;
