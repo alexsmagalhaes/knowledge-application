@@ -11,11 +11,11 @@ module.exports = (app) => {
   };
 
   /**
- * @swagger
- * tags:
- *   name: Users
- *   description: Users operations
- */
+   * @swagger
+   * tags:
+   *   name: Users
+   *   description: Users operations
+   */
 
   /**
    * @swagger
@@ -93,6 +93,9 @@ module.exports = (app) => {
     const user = { ...req.body };
 
     if (req.params.id) user.id = req.params.id;
+
+    if (!req.originalUrl.startsWith("/users")) user.admin = false;
+    if(req.user || !req.user.admin) user.admin = false
 
     try {
       existsOrError(user.name, "Name not provided!");
