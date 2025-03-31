@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/knowledge_stats").then(()=>{
+mongoose.connect(`${process.env.MONGODB_CONECTION}`).then(()=>{
     
 }).catch((err) => {
   const msg = "Error! Unable to connect to MongoDB.";
