@@ -3,6 +3,9 @@ const consign = require("consign");
 const db = require("./config/db");
 const mongoose = require("mongoose");
 
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("../swaggerConfig");
+
 require("dotenv").config();
 require("./config/mongodb");
 
@@ -20,6 +23,8 @@ consign()
   .then("./src/schedule/statsSchedule.js")
   .then("./src/config/routes.js")
   .into(app);
+
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get("/", (_, res) => {
   res.send("Server is online");

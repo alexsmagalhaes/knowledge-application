@@ -1,5 +1,40 @@
 module.exports = (app) => {
+  /**
+   * @swagger
+   * tags:
+   *   name: Categories
+   *   description: Category operations
+   */
+
   const { existsOrError, notExistsOrError } = app.src.api.validation;
+
+  /**
+   * @swagger
+   * /categories:
+   *   post:
+   *     summary: Create or update a category
+   *     tags: [Categories]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               name:
+   *                 type: string
+   *                 example: Technology
+   *               parentId:
+   *                 type: integer
+   *                 example: 1
+   *     responses:
+   *       204:
+   *         description: Category created/updated successfully
+   *       400:
+   *         description: Validation error
+   *       500:
+   *         description: Internal server error
+   */
 
   const save = (req, res) => {
     const category = { ...req.body };
@@ -31,6 +66,28 @@ module.exports = (app) => {
         });
     }
   };
+
+  /**
+   * @swagger
+   * /categories/{id}:
+   *   delete:
+   *     summary: Soft delete a category
+   *     tags: [Categories]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: The category ID
+   *     responses:
+   *       204:
+   *         description: Category deleted successfully
+   *       400:
+   *         description: Validation error
+   *       404:
+   *         description: Category not found or has dependencies
+   */
 
   const remove = async (req, res) => {
     try {
@@ -93,12 +150,70 @@ module.exports = (app) => {
     return categoriesWithPath;
   };
 
+  /**
+   * @swagger
+   * /categories:
+   *   get:
+   *     summary: Retrieve all categories
+   *     tags: [Categories]
+   *     responses:
+   *       200:
+   *         description: A list of categories with paths
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 type: object
+   *                 properties:
+   *                   id:
+   *                     type: integer
+   *                     example: 1
+   *                   name:
+   *                     type: string
+   *                     example: Technology
+   *                   path:
+   *                     type: string
+   *                     example: Root > Technology
+   */
+
   const get = (req, res) => {
     app
       .db("categories")
       .then((categories) => res.json(withPath(categories)))
       .catch((err) => res.status(500).send(err));
   };
+
+  /**
+   * @swagger
+   * /categories/{id}:
+   *   get:
+   *     summary: Get a category by ID
+   *     tags: [Categories]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: The category ID
+   *     responses:
+   *       200:
+   *         description: Category data
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 id:
+   *                   type: integer
+   *                   example: 1
+   *                 name:
+   *                   type: string
+   *                   example: Technology
+   *       404:
+   *         description: Category not found
+   */
 
   const getById = (req, res) => {
     try {
@@ -127,6 +242,41 @@ module.exports = (app) => {
     });
     return tree;
   };
+
+  /**
+   * @swagger
+   * /categories/tree:
+   *   get:
+   *     summary: Get categories as a tree structure
+   *     tags: [Categories]
+   *     responses:
+   *       200:
+   *         description: Categories in a tree structure
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 type: object
+   *                 properties:
+   *                   id:
+   *                     type: integer
+   *                     example: 1
+   *                   name:
+   *                     type: string
+   *                     example: Technology
+   *                   children:
+   *                     type: array
+   *                     items:
+   *                       type: object
+   *                       properties:
+   *                         id:
+   *                           type: integer
+   *                           example: 2
+   *                         name:
+   *                           type: string
+   *                           example: Computers
+   */
 
   const getTree = (req, res) => {
     app

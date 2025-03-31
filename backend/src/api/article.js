@@ -3,6 +3,51 @@ const queries = require("./queries");
 module.exports = (app) => {
   const { existsOrError, notExistsOrError } = app.src.api.validation;
 
+  /**
+   * @swagger
+   * tags:
+   *   name: Articles
+   *   description: Operations related to articles
+   */
+
+  /**
+   * @swagger
+   * /articles:
+   *   post:
+   *     summary: Create or update an article
+   *     tags: [Articles]
+   *     parameters:
+   *       - in: body
+   *         name: article
+   *         description: Article data
+   *         required: true
+   *         schema:
+   *           type: object
+   *           properties:
+   *             name:
+   *               type: string
+   *               example: "Article Title"
+   *             description:
+   *               type: string
+   *               example: "Article description."
+   *             content:
+   *               type: string
+   *               example: "This is the article content."
+   *             categoryId:
+   *               type: integer
+   *               example: 1
+   *             userId:
+   *               type: integer
+   *               example: 123
+   *     responses:
+   *       204:
+   *         description: Article successfully created or updated
+   *       400:
+   *         description: Missing required fields
+   *       500:
+   *         description: Internal server error
+   */
+
   const save = (req, res) => {
     const article = { ...req.body };
     if (req.params.id) article.id = req.params.id;
@@ -33,6 +78,29 @@ module.exports = (app) => {
     }
   };
 
+  /**
+   * @swagger
+   * /articles/{id}:
+   *   delete:
+   *     summary: Delete an article
+   *     tags: [Articles]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         description: Article ID
+   *         schema:
+   *           type: integer
+   *           example: 1
+   *     responses:
+   *       204:
+   *         description: Article successfully deleted
+   *       400:
+   *         description: Article not found
+   *       500:
+   *         description: Internal server error
+   */
+
   const remove = async (req, res) => {
     try {
       const rowsDeleted = await app
@@ -52,6 +120,52 @@ module.exports = (app) => {
     }
   };
 
+  /**
+   * @swagger
+   * /articles:
+   *   get:
+   *     summary: Get a list of articles
+   *     tags: [Articles]
+   *     parameters:
+   *       - in: query
+   *         name: page
+   *         required: false
+   *         description: Page number for pagination
+   *         schema:
+   *           type: integer
+   *           example: 1
+   *     responses:
+   *       200:
+   *         description: List of articles
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 data:
+   *                   type: array
+   *                   items:
+   *                     type: object
+   *                     properties:
+   *                       id:
+   *                         type: integer
+   *                         example: 1
+   *                       name:
+   *                         type: string
+   *                         example: "Article Title"
+   *                       description:
+   *                         type: string
+   *                         example: "Article description."
+   *                 count:
+   *                   type: integer
+   *                   example: 50
+   *                 limit:
+   *                   type: integer
+   *                   example: 10
+   *       500:
+   *         description: Internal server error
+   */
+
   const limit = 10;
   const get = async (req, res) => {
     const page = req.query.page || 1;
@@ -68,6 +182,44 @@ module.exports = (app) => {
       .catch((err) => res.status(500).send(err));
   };
 
+  /**
+   * @swagger
+   * /articles/{id}:
+   *   get:
+   *     summary: Get an article by ID
+   *     tags: [Articles]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         description: Article ID
+   *         schema:
+   *           type: integer
+   *           example: 1
+   *     responses:
+   *       200:
+   *         description: Article found
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 id:
+   *                   type: integer
+   *                   example: 1
+   *                 name:
+   *                   type: string
+   *                   example: "Article Title"
+   *                 description:
+   *                   type: string
+   *                   example: "Article description."
+   *                 content:
+   *                   type: string
+   *                   example: "This is the article content."
+   *       500:
+   *         description: Internal server error
+   */
+
   const getById = (req, res) => {
     app
       .db("articles")
@@ -79,6 +231,56 @@ module.exports = (app) => {
       })
       .catch((err) => res.status(500).send(err));
   };
+
+  /**
+   * @swagger
+   * /articles/category/{id}:
+   *   get:
+   *     summary: Get articles by category
+   *     tags: [Articles]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         description: Category ID
+   *         schema:
+   *           type: integer
+   *           example: 1
+   *       - in: query
+   *         name: page
+   *         required: false
+   *         description: Page number for pagination
+   *         schema:
+   *           type: integer
+   *           example: 1
+   *     responses:
+   *       200:
+   *         description: List of articles in the category
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 type: object
+   *                 properties:
+   *                   id:
+   *                     type: integer
+   *                     example: 1
+   *                   name:
+   *                     type: string
+   *                     example: "Article Title"
+   *                   description:
+   *                     type: string
+   *                     example: "Article description."
+   *                   imageUrl:
+   *                     type: string
+   *                     example: "https://example.com/image.jpg"
+   *                   author:
+   *                     type: string
+   *                     example: "John Doe"
+   *       500:
+   *         description: Internal server error
+   */
 
   const getByCategory = async (req, res) => {
     const categoryId = req.params.id;
@@ -105,5 +307,5 @@ module.exports = (app) => {
       .catch((msg) => res.status(500).send(msg));
   };
 
-  return { save, remove, get, getById,getByCategory };
+  return { save, remove, get, getById, getByCategory };
 };

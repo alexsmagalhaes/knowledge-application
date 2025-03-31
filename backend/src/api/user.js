@@ -10,6 +10,85 @@ module.exports = (app) => {
     return bcript.hashSync(password, salt);
   };
 
+  /**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: Users operations
+ */
+
+  /**
+   * @swagger
+   * /users:
+   *   post:
+   *     summary: Create a new user
+   *     tags: [Users]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               name:
+   *                 type: string
+   *                 example: John Doe
+   *               email:
+   *                 type: string
+   *                 example: johndoe@example.com
+   *               password:
+   *                 type: string
+   *                 example: password123
+   *               confirmPassword:
+   *                 type: string
+   *                 example: password123
+   *     responses:
+   *       201:
+   *         description: User created successfully
+   *       400:
+   *         description: Validation error
+   */
+
+  /**
+   * @swagger
+   * /users/{id}:
+   *   put:
+   *     summary: Update an existing user
+   *     tags: [Users]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: The user ID
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               name:
+   *                 type: string
+   *                 example: John Doe
+   *               email:
+   *                 type: string
+   *                 example: johndoe@example.com
+   *               password:
+   *                 type: string
+   *                 example: newpassword123
+   *               confirmPassword:
+   *                 type: string
+   *                 example: newpassword123
+   *     responses:
+   *       200:
+   *         description: User updated successfully
+   *       400:
+   *         description: Validation error or missing required fields
+   *       404:
+   *         description: User not found
+   */
   const save = async (req, res) => {
     const user = { ...req.body };
 
@@ -62,6 +141,35 @@ module.exports = (app) => {
     }
   };
 
+  /**
+   * @swagger
+   * /users:
+   *   get:
+   *     summary: Retrieve a list of users
+   *     tags: [Users]
+   *     responses:
+   *       200:
+   *         description: A list of users
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 type: object
+   *                 properties:
+   *                   id:
+   *                     type: integer
+   *                     example: 1
+   *                   name:
+   *                     type: string
+   *                     example: John Doe
+   *                   email:
+   *                     type: string
+   *                     example: johndoe@example.com
+   *                   admin:
+   *                     type: boolean
+   *                     example: false
+   */
   const get = (_, res) => {
     app
       .db("users")
@@ -74,6 +182,27 @@ module.exports = (app) => {
       });
   };
 
+  /**
+   * @swagger
+   * /users/{id}:
+   *   delete:
+   *     summary: Soft delete a user
+   *     tags: [Users]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: The user ID
+   *     responses:
+   *       204:
+   *         description: User deleted successfully
+   *       400:
+   *         description: Validation error
+   *       404:
+   *         description: User not found
+   */
   const remove = async (req, res) => {
     try {
       const articles = await app
@@ -94,6 +223,42 @@ module.exports = (app) => {
     }
   };
 
+  /**
+   * @swagger
+   * /users/{id}:
+   *   get:
+   *     summary: Get a user by ID
+   *     tags: [Users]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: The user ID
+   *     responses:
+   *       200:
+   *         description: User data
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 id:
+   *                   type: integer
+   *                   example: 1
+   *                 name:
+   *                   type: string
+   *                   example: John Doe
+   *                 email:
+   *                   type: string
+   *                   example: johndoe@example.com
+   *                 admin:
+   *                   type: boolean
+   *                   example: false
+   *       404:
+   *         description: User not found
+   */
   const getById = (req, res) => {
     app
       .db("users")
