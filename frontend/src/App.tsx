@@ -1,13 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "./pages/dashboard";
+import GlobalStylesLayout from "./layouts/global-styles-layout";
+import Outlet from "./routes/routes-outlet";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-      </Routes>
-    </BrowserRouter>
+    <GlobalStylesLayout>
+      <Outlet />
+    </GlobalStylesLayout>
   );
 }
 
