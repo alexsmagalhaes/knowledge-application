@@ -28,7 +28,9 @@ declare module "@mui/material/Typography" {
 const theme = createTheme({
   typography: {
     fontFamily: "Aspekta, sans-serif",
-
+    allVariants: {
+      color: "rgba(49, 49, 64, 0.90)",
+    },
     titleLight: {
       color: "#313140",
     },
