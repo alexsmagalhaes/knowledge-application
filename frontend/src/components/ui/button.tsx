@@ -5,11 +5,13 @@ import { Button as MuiButton } from "@mui/material";
 type ButtonProps = {
   size?: "small" | "medium";
   children: React.ReactNode;
+  onClick?: () => void;
 };
 
-function Button({ size = "small", children }: ButtonProps) {
+function Button({ size = "small", children, onClick }: ButtonProps) {
   return (
     <MuiButton
+      onClick={onClick}
       variant="contained"
       sx={{
         height: size === "small" ? "2.5rem" : "3rem",
