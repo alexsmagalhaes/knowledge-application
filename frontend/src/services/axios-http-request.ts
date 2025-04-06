@@ -9,10 +9,20 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
-  const token = Cookies.get("session");
+  const session = Cookies.get("session");
 
-  if (token && config.headers && config.headers["Requires-Auth"] !== false) {
-    config.headers.Authorization = `Bearer ${token}`;
+  try {
+    const parsed = JSON.parse(session || "{}");
+
+    if (
+      parsed.token &&
+      config.headers &&
+      config.headers["Requires-Auth"] !== false
+    ) {
+      config.headers.Authorization = `Bearer ${parsed.token}`;
+    }
+  } catch (e) {
+    console.warn("Session cookie inválido.");
   }
 
   return config;
