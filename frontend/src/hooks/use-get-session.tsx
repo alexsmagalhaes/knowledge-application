@@ -1,4 +1,4 @@
-import { useValidateToken } from "@/queries/use-validate-token";
+import { useValidateToken } from "@/queries/auth/use-validate-token";
 import { useSessionStore } from "@/store/use-session-store";
 import Cookies from "js-cookie";
 import { useEffect, useState, useCallback } from "react";
