@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 type TStore = {
   session: IAuthSession | undefined;
-  setSession: (sessin: IAuthSession) => void;
+  setSession: (session: IAuthSession) => void;
   removeSession: () => void;
 };
 
