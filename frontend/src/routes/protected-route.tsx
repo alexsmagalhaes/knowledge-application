@@ -2,18 +2,29 @@ import { useSessionStore } from "@/store/use-session-store";
 import { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
 
+type TRoleLevel = "admin" | "member" | "public";
+
 interface IProtectedRouter {
   children: ReactElement;
-  isAdmin: boolean;
+  allowedRoles: TRoleLevel[];
+  fallback: string;
 }
 
-function ProtectedRouter({ children, isAdmin = false }: IProtectedRouter) {
+function ProtectedRouter({
+  children,
+  allowedRoles,
+  fallback,
+}: IProtectedRouter) {
   const { session } = useSessionStore();
 
-  if (!session) return <Navigate to="/login" />;
-  if (!isAdmin && !session.admin) return <Navigate to="/dashboard" />;
+  let userRole: TRoleLevel = "admin";
 
-  return children;
+  if (session && !session?.admin) userRole = "member";
+  if (!session) userRole = "public";
+
+  if (allowedRoles.includes(userRole)) return children;
+
+  return <Navigate to={fallback} />;
 }
 
 export default ProtectedRouter;
