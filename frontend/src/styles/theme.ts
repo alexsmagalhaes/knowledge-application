@@ -1,53 +1,28 @@
 import { createTheme } from "@mui/material/styles";
-
-declare module "@mui/material/styles" {
-  interface TypographyVariants {
-    titleLight: React.CSSProperties;
-    titleDark: React.CSSProperties;
-    bodyLight: React.CSSProperties;
-    bodyDark: React.CSSProperties;
-  }
-
-  interface TypographyVariantsOptions {
-    titleLight?: React.CSSProperties;
-    titleDark?: React.CSSProperties;
-    bodyLight?: React.CSSProperties;
-    bodyDark?: React.CSSProperties;
-  }
-}
-
-declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides {
-    titleLight: true;
-    titleDark: true;
-    bodyLight: true;
-    bodyDark: true;
-  }
-}
+import { grey } from "@mui/material/colors";
 
 const theme = createTheme({
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: "Aspekta, sans-serif",
     allVariants: {
-      color: "rgba(49, 49, 64, 0.90)",
-    },
-    titleLight: {
-      color: "#313140",
-    },
-    titleDark: {
-      color: "#424242",
-    },
-    bodyLight: {
-      color: "rgba(49, 49, 64, 0.90)",
-    },
-    bodyDark: {
-      color: "rgba(255, 255, 255, 0.90)",
+      color: grey[800],
+      margin: "0px",
+      fontWeight: 500,
     },
 
-    // HEADINGS (h1-h6) com breakpoints responsivos
     h1: {
       fontSize: "4rem",
       lineHeight: 1.2,
+      color: grey[900],
       "@media (max-width:1536px)": { fontSize: "3.5rem" },
       "@media (max-width:1200px)": { fontSize: "3rem" },
       "@media (max-width:900px)": { fontSize: "2.5rem" },
@@ -55,27 +30,31 @@ const theme = createTheme({
     },
     h2: {
       fontSize: "3rem",
+      color: grey[900],
       "@media (max-width:1200px)": { fontSize: "2.5rem" },
       "@media (max-width:900px)": { fontSize: "2rem" },
       "@media (max-width:600px)": { fontSize: "1.75rem" },
     },
     h3: {
       fontSize: "2rem",
+      color: grey[900],
       "@media (max-width:900px)": { fontSize: "1.75rem" },
       "@media (max-width:600px)": { fontSize: "1.5rem" },
     },
     h4: {
       fontSize: "1.75rem",
+      color: grey[900],
       "@media (max-width:600px)": { fontSize: "1.5rem" },
     },
     h5: {
       fontSize: "1.5rem",
+      color: grey[900],
     },
     h6: {
-      fontSize: "1.25rem",
+      fontSize: "1.5rem",
+      color: grey[900],
     },
 
-    // BODY TEXT
     body1: {
       fontSize: "1rem",
       lineHeight: 1.5,

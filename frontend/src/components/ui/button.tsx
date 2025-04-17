@@ -1,16 +1,20 @@
 import theme from "@/styles/theme";
 import { alpha } from "@mui/material";
-import { Button as MuiButton } from "@mui/material";
+import {
+  Button as MuiButton,
+  ButtonProps as MuiButtonProps,
+} from "@mui/material";
 
 type ButtonProps = {
   size?: "small" | "medium";
   children: React.ReactNode;
   onClick?: () => void;
-};
+} & MuiButtonProps;
 
-function Button({ size = "small", children, onClick }: ButtonProps) {
+function Button({ size = "small", children, onClick, ...props }: ButtonProps) {
   return (
     <MuiButton
+      {...props}
       onClick={onClick}
       variant="contained"
       sx={{
