@@ -22,14 +22,14 @@ export default function AuthFormCard({ tabs }: IAuthFormCard) {
   return (
     <Container maxWidth="sm">
       <Paper elevation={12} sx={{ borderTop: "0.25rem #911892 solid" }}>
-        <Container
+        <Box
           maxWidth="sm"
           sx={{
             padding: 4,
             paddingBottom: 0,
             display: "flex",
             flexDirection: "column",
-            gap: 3,
+            gap: 2,
             borderBottom: "solid 1px",
             borderColor: grey[400],
           }}
@@ -37,7 +37,7 @@ export default function AuthFormCard({ tabs }: IAuthFormCard) {
           <Box>
             <Typography
               variant="h6"
-              sx={{ fontWeight: 700, marginBottom: "0.25rem" }}
+              sx={{ fontWeight: 700, marginBottom: "0.25rem", fontSize: 22 }}
             >
               Bem-vindo(a) ao knowledger.AI!
             </Typography>
@@ -52,7 +52,7 @@ export default function AuthFormCard({ tabs }: IAuthFormCard) {
               return <TabForm label={tab.title} />;
             })}
           </Tabs>
-        </Container>
+        </Box>
 
         {tabs[value].component}
       </Paper>

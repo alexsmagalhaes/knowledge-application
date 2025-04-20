@@ -1,4 +1,5 @@
 import { Box, TextField, TextFieldProps, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 type TInputText = TextFieldProps & {
   topLabel?: string;
@@ -20,6 +21,7 @@ function Input({ topLabel, ...props }: TInputText) {
               height: 40,
               paddingX: "0rem",
               borderWidth: "2px",
+              color: grey[900],
             },
           },
         }}

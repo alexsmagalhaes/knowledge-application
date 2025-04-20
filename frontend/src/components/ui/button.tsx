@@ -17,9 +17,9 @@ function Button({ size = "small", children, onClick, ...props }: ButtonProps) {
       {...props}
       onClick={onClick}
       variant="contained"
-      sx={{
+      sx={(theme) => ({
         height: size === "small" ? "2.5rem" : "3rem",
-        fontSize: "0.875rem",
+        fontSize: theme.typography.body1.fontSize,
         fontWeight: 600,
         textTransform: "initial",
         padding: size === "small" ? "0 1.25rem" : "0 1.5rem",
@@ -29,7 +29,7 @@ function Button({ size = "small", children, onClick, ...props }: ButtonProps) {
           boxShadow: "none",
           backgroundColor: alpha(theme.palette.primary.main, 0.95),
         },
-      }}
+      })}
     >
       {children}
     </MuiButton>
