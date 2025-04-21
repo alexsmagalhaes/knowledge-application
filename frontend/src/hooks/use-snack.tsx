@@ -1,4 +1,5 @@
 import { useSnackStore } from "@/store/use-snack-store";
+import { useCallback } from "react";
 
 type TMessage = {
   message: string | null;
@@ -13,10 +14,14 @@ function useSnack() {
     isVisible,
     message,
   } = useSnackStore();
-  const handleOpen = (message: TMessage) => {
-    setMessage(message);
-    open();
-  };
+
+  const handleOpen = useCallback(
+    (message: TMessage) => {
+      setMessage(message);
+      open();
+    },
+    [setMessage, open]
+  );
 
   return { handleClose, handleOpen, isVisible, message };
 }
