@@ -9,6 +9,16 @@ type TLogin = {
 export const loginService = async (payload: TLogin) =>
   await httpClient.post<IAuthSession>("/signin", payload);
 
+type TRegister = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
+export const resgisterService = async (payload: TRegister) =>
+  await httpClient.post<IAuthSession>("/signup", payload);
+
 type TValidateToken = {
   token: string;
 };
