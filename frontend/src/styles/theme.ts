@@ -56,14 +56,14 @@ const theme = createTheme({
     },
 
     body1: {
-      fontSize: "1rem",
+      fontSize: "0.875rem",
       lineHeight: 1.5,
-      "@media (max-width:600px)": { fontSize: "0.9375rem" },
+      // "@media (max-width:600px)": { fontSize: "0.9375rem" },
     },
     body2: {
       fontSize: "0.875rem",
       lineHeight: 1.5,
-      "@media (max-width:600px)": { fontSize: "0.825rem" },
+      // "@media (max-width:600px)": { fontSize: "0.825rem" },
     },
   },
 
