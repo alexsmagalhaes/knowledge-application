@@ -105,7 +105,12 @@ export default function AuthFormTabLogin() {
     <Box
       component="form"
       onSubmit={handleSubmit}
-      sx={{ display: "flex", flexDirection: "column", gap: 2, padding: 4 }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        p: { xs: 2, md: 3, lg: 4, xl: 4 },
+      }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         <FormControl error={!!errors.email} fullWidth>

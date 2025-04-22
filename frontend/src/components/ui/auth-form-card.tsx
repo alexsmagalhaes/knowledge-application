@@ -1,4 +1,4 @@
-import { Box, Container, Paper, Tabs, Typography } from "@mui/material";
+import { Box, Paper, Tabs, Typography } from "@mui/material";
 import { ReactElement, SetStateAction, useState } from "react";
 import TabForm from "./tab";
 import { grey } from "@mui/material/colors";
@@ -20,42 +20,47 @@ export default function AuthFormCard({ tabs }: IAuthFormCard) {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper elevation={12} sx={{ borderTop: "0.25rem #911892 solid" }}>
-        <Box
-          maxWidth="sm"
-          sx={{
-            padding: 4,
-            paddingBottom: 0,
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            borderBottom: "solid 1px",
-            borderColor: grey[400],
-          }}
-        >
-          <Box>
-            <Typography
-              variant="h6"
-              sx={{ fontWeight: 700, marginBottom: "0.25rem", fontSize: 22 }}
-            >
-              Bem-vindo(a) ao knowledger.AI!
-            </Typography>
+    <Paper
+      elevation={12}
+      sx={{
+        borderTop: "0.25rem #911892 solid",
+        maxWidth: "36.25rem",
+        width: "100%",
+      }}
+    >
+      <Box
+        maxWidth="sm"
+        sx={{
+          p: { xs: 2, md: 3, lg: 4, xl: 4 },
+          pb: { xs: 0, md: 0, lg: 0, xl: 0 },
+          display: "flex",
+          flexDirection: "column",
+          gap: { xs: 1.5, md: 1.5, lg: 2, xl: 2 },
+          borderBottom: "solid 1px",
+          borderColor: grey[400],
+        }}
+      >
+        <Box>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 700, marginBottom: "0.25rem", fontSize: 22 }}
+          >
+            Bem-vindo(a) ao knowledger.AI!
+          </Typography>
 
-            <Typography variant="body1" color="text.secondary">
-              Entre ou crie sua conta para acessar todo o conteúdo disponível.
-            </Typography>
-          </Box>
-
-          <Tabs value={value} onChange={handleChange}>
-            {tabs.map((tab) => {
-              return <TabForm label={tab.title} />;
-            })}
-          </Tabs>
+          <Typography variant="body1" color="text.secondary">
+            Entre ou crie sua conta para acessar todo o conteúdo disponível.
+          </Typography>
         </Box>
 
-        {tabs[value].component}
-      </Paper>
-    </Container>
+        <Tabs value={value} onChange={handleChange}>
+          {tabs.map((tab) => {
+            return <TabForm label={tab.title} />;
+          })}
+        </Tabs>
+      </Box>
+
+      {tabs[value].component}
+    </Paper>
   );
 }
