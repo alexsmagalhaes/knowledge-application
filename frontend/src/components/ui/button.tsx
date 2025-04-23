@@ -21,6 +21,7 @@ function Button({ size = "small", children, onClick, ...props }: ButtonProps) {
         height: size === "small" ? "2.5rem" : "3rem",
         fontSize: theme.typography.body1.fontSize,
         fontWeight: 600,
+        minWidth: 0,
         textTransform: "initial",
         padding: size === "small" ? "0 1.25rem" : "0 1.5rem",
         borderRadius: "0.25rem",

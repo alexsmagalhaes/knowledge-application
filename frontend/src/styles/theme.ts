@@ -74,6 +74,9 @@ const theme = createTheme({
     secondary: {
       main: "#6632C9",
     },
+    background: {
+      default: '#F2F3F5', 
+    },
   },
 });
 
