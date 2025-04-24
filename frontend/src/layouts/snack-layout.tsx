@@ -1,9 +1,7 @@
 import useSnack from "@/hooks/use-snack";
-import { IconButton } from "@mui/material";
-import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import { IconButton, Snackbar, Alert, AlertColor } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { grey } from "@mui/material/colors";
-import theme from "@/styles/theme";
+import { SnackbarOrigin } from "@mui/material/Snackbar";
 
 function SnackLayout() {
   const { isVisible, handleClose, message } = useSnack();
@@ -12,27 +10,18 @@ function SnackLayout() {
 
   return (
     <Snackbar
-      slotProps={{
-        content: {
-          sx: {
-            bgcolor: "white",
-            color: grey[800],
-            boxShadow: 24,
-            borderRadius: 1,
-            borderLeft: `0.25rem solid ${
-              theme.palette[message?.type || "info"].main
-            }`,
-          },
-        },
-      }}
       open={isVisible}
       autoHideDuration={6000}
       onClose={handleClose}
-      message={message?.message}
-      key={position.vertical + position.horizontal}
       anchorOrigin={position}
-      action={
-        <>
+      key={position.vertical + position.horizontal}
+    >
+      <Alert
+        onClose={handleClose}
+        severity={(message?.type as AlertColor) || "info"}
+        sx={{ width: "100%" }}
+        variant="filled"
+        action={
           <IconButton
             size="small"
             aria-label="close"
@@ -41,9 +30,11 @@ function SnackLayout() {
           >
             <CloseIcon fontSize="small" />
           </IconButton>
-        </>
-      }
-    />
+        }
+      >
+        {message?.message}
+      </Alert>
+    </Snackbar>
   );
 }
 
