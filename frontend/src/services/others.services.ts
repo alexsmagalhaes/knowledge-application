@@ -1,5 +1,5 @@
-import { Stat } from "@/types/stat";
-import { httpClient } from "./axios-http-request";
+import { Stat } from "@/types/other";
+import { httpClient } from "../libs/axios/http-request";
 
 type TStat = Stat;
 

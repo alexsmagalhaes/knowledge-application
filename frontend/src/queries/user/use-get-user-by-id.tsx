@@ -1,4 +1,4 @@
-import { getUserByIdService } from "@/services/user";
+import { getUserByIdService } from "@/services/user.services";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetUserById = (id: number) => {

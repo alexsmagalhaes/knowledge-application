@@ -1,4 +1,4 @@
-import { createArticleService } from "@/services/article";
+import { createArticleService } from "@/services/article.services";
 import { useMutation } from "@tanstack/react-query";
 
 export const useCreateArticle = () => {

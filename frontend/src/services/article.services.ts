@@ -1,4 +1,4 @@
-import { httpClient } from "./axios-http-request";
+import { httpClient } from "../libs/axios/http-request";
 
 export const getAllArticlesService = async () => {
   await httpClient.get("/articles");
@@ -28,6 +28,10 @@ type TArticle = {
   content: string;
 };
 export const createArticleService = async (payload: TArticle) => {
+  await httpClient.post("/articles", payload);
+};
+
+export const updateArticleService = async (payload: TArticle) => {
   await httpClient.post("/articles", payload);
 };
 

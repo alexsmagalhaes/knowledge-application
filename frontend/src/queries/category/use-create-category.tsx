@@ -1,4 +1,4 @@
-import { createCategoryService } from "@/services/category";
+import { createCategoryService } from "@/services/category.services";
 import { useMutation } from "@tanstack/react-query";
 
 export const useCreateCategory = () => {

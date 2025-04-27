@@ -1,4 +1,4 @@
-import { deleteCategoryByIdService } from "@/services/category";
+import { deleteCategoryByIdService } from "@/services/category.services";
 import { useMutation } from "@tanstack/react-query";
 
 export const useDeleteCategoryById = () => {

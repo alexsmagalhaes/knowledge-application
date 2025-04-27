@@ -1,5 +1,5 @@
 import { User } from "@/types/user";
-import { httpClient } from "./axios-http-request";
+import { httpClient } from "../libs/axios/http-request";
 
 export const getAllUsersService = async () => {
   await httpClient.get<User[]>("/users");

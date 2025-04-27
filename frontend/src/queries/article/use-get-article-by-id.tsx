@@ -1,4 +1,4 @@
-import { getArticleByIdService } from "@/services/article";
+import { getArticleByIdService } from "@/services/article.services";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetArticleById = (id: number) => {

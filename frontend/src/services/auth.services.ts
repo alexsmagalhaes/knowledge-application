@@ -1,5 +1,5 @@
 import { IAuthSession } from "@/types/auth";
-import { httpClient } from "./axios-http-request";
+import { httpClient } from "../libs/axios/http-request";
 
 type TLogin = {
   email: string;

@@ -1,4 +1,4 @@
-import { getAllStatsService } from "@/services/stat";
+import { getAllStatsService } from "@/services/others.services";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetStats = () => {

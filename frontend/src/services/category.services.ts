@@ -1,4 +1,4 @@
-import { httpClient } from "./axios-http-request";
+import { httpClient } from "../libs/axios/http-request";
 
 export const getAllCategoriesService = async () => {
   await httpClient.get("/categories");
