@@ -1,4 +1,4 @@
-import { useModalStore } from "@/store/use-modal-store";
+import { useModalStore } from "@/store/use-modal.store";
 import { ReactNode } from "react";
 
 type TUseModal = ReactNode;

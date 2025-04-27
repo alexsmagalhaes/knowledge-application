@@ -1,4 +1,4 @@
-import { useSessionStore } from "@/store/use-session-store";
+import { useSessionStore } from "@/store/use-session.store";
 import { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
 

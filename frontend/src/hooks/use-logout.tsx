@@ -1,4 +1,4 @@
-import { useSessionStore } from "@/store/use-session-store";
+import { useSessionStore } from "@/store/use-session.store";
 import Cookies from "js-cookie";
 import { useState } from "react";
 

@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import { ReactElement } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Button } from "@mui/material";
-import { useModalStore } from "@/store/use-modal-store";
+import { useModalStore } from "@/store/use-modal.store";
 
 type ModalTexts = {
   title: string;

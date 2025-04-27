@@ -1,5 +1,5 @@
 import { useValidateToken } from "@/queries/auth/use-validate-token";
-import { useSessionStore } from "@/store/use-session-store";
+import { useSessionStore } from "@/store/use-session.store";
 import Cookies from "js-cookie";
 import { useEffect, useState, useCallback } from "react";
 import { IAuthSession } from "@/types/auth";

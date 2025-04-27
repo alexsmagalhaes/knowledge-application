@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { loginService } from "@/services/auth.services";
-import { useSessionStore } from "@/store/use-session-store";
+import { useSessionStore } from "@/store/use-session.store";
 import { IAuthSession } from "@/types/auth";
 import Cookies from "js-cookie";
 

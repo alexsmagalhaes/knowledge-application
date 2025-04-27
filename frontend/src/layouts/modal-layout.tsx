@@ -1,4 +1,4 @@
-import { useModalStore } from "@/store/use-modal-store";
+import { useModalStore } from "@/store/use-modal.store";
 import { Box, Modal, SxProps, Theme } from "@mui/material";
 
 const baseStyles: SxProps<Theme> = {
