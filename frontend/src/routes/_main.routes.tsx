@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "@/pages/dashboard";
-import ProtectedRouter from "./protected-route";
+import ProtectedRouter from "./protected.routes";
 import Login from "@/pages/auth";
 
 function Outlet() {

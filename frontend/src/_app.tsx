@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import GlobalStylesLayout from "./layouts/global-styles-layout";
-import Outlet from "./routes/routes-outlet";
+import Outlet from "./routes/_main.routes";
 import ModalLayout from "./layouts/modal-layout";
 import { SessionProvider } from "./provider/session-provider";
 import SnackLayout from "./layouts/snack-layout";

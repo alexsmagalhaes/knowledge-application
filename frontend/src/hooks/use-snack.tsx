@@ -1,4 +1,4 @@
-import { useSnackStore } from "@/store/use-snack-store";
+import { useSnackStore } from "@/store/use-snack.store";
 import { useCallback } from "react";
 
 type TMessage = {
