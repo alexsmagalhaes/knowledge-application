@@ -3,7 +3,7 @@ import Button from "./button";
 import InputText from "./input";
 import { FormEvent, useReducer, useCallback, useState } from "react";
 import useSnack from "@/hooks/use-snack";
-import { useRegister } from "@/queries/auth/use-register";
+import useAuth from "@/hooks/use-auth";
 
 const useFormValidation = (
   name: string,
@@ -109,7 +109,8 @@ export default function AuthFormTabRegister() {
     state.confirmPassword
   );
 
-  const { mutateAsync, error } = useRegister();
+  const { register } = useAuth();
+  const { mutateAsync, error } = register;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

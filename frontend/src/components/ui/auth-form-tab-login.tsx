@@ -2,8 +2,8 @@ import { Box, FormControl, FormHelperText } from "@mui/material";
 import Button from "./button";
 import InputText from "./input";
 import { FormEvent, useReducer, useCallback, useState } from "react";
-import { useLogin } from "@/queries/auth/use-login";
 import useSnack from "@/hooks/use-snack";
+import useAuth from "@/hooks/use-auth";
 
 const useFormValidation = (email: string, password: string) => {
   const [errors, setErrors] = useState({ email: "", password: "" });
@@ -37,7 +37,8 @@ const useAuthSubmit = (
   password: string,
   handleOpen: Function
 ) => {
-  const { mutateAsync } = useLogin();
+  const { login } = useAuth();
+  const { mutateAsync } = login;
 
   const submit = async () => {
     try {
