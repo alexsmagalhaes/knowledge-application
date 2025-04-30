@@ -6,35 +6,44 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Button } from "@mui/material";
 import { useModalStore } from "@/store/use-modal.store";
 
-type ModalTexts = {
+type TModalTexts = {
   title: string;
   disclaimer: string;
 };
 
+type TModalSize = "sm" | "md";
+
+const sizes: Record<TModalSize, string> = {
+  sm: "34.25rem",
+  md: "47.75rem",
+};
+
 interface IModalWrapper {
   children: ReactElement;
-  content: ModalTexts;
+  content: TModalTexts;
+  size?: TModalSize;
 }
 
-function ModalWrapper({ children, content }: IModalWrapper) {
+function ModalWrapper({ children, content, size = "sm" }: IModalWrapper) {
   const { close } = useModalStore();
 
   return (
     <Box
       sx={{
-        borderRadius: 1,
-        bgcolor: "white",
         overflow: "hidden",
-        width: "100vw",
-        maxWidth: "36.25rem",
+        width: "100%",
+        bgcolor: "background.paper",
+        borderRadius: 1,
+        maxWidth: sizes[size],
+        mx: "auto",
       }}
     >
       <Box
         sx={{
-          p: 2.5,
+          p: { xs: 2, md: 2, lg: 2.5, xl: 2.5 },
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: "start",
           gap: 2,
         }}
       >
@@ -42,7 +51,12 @@ function ModalWrapper({ children, content }: IModalWrapper) {
           {content.title}
         </Typography>
         <Button
-          sx={{ width: "2rem", height: "2rem", p: 0, minWidth: "unset" }}
+          sx={{
+            width: "2rem",
+            height: "2rem",
+            p: 0,
+            minWidth: "unset",
+          }}
           onClick={close}
         >
           <CloseIcon />
@@ -53,14 +67,14 @@ function ModalWrapper({ children, content }: IModalWrapper) {
           borderBottom: "1px solid",
           borderTop: "1px solid",
           borderColor: grey[400],
-          p: 2.5,
+          p: { xs: 2, md: 2, lg: 2.5, xl: 2.5 },
         }}
       >
         {children}
       </Box>
       <Box
         sx={{
-          p: 2.5,
+          p: { xs: 2, md: 2, lg: 2.5, xl: 2.5 },
         }}
       >
         <Typography sx={{ fontSize: "0.6875rem" }}>

@@ -24,8 +24,9 @@ function ModalRoot() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    bgcolor: "background.paper",
-    p: 4,
+    width:"100%",
+    p: 0,
+    maxWidth: "calc(100% - 2rem)",
   };
 
   if (!content) return;
