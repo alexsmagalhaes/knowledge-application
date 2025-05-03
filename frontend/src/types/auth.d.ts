@@ -1,4 +1,4 @@
-export interface IAuthSession {
+interface IAuthSession {
   id: number;
   name: string;
   email: string;

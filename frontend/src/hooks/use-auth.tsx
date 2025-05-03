@@ -4,7 +4,6 @@ import {
   validadeTokenService,
 } from "@/services/auth.services";
 import { useSessionStore } from "@/store/use-session.store";
-import { IAuthSession } from "@/types/auth";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { useState } from "react";

@@ -2,11 +2,9 @@ import { useSessionStore } from "@/store/use-session.store";
 import { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
 
-type TRoleLevel = "admin" | "member" | "public";
-
 interface IProtectedRouter {
   children: ReactElement;
-  allowedRoles: TRoleLevel[];
+  allowedRoles: Role[];
   fallback: string;
 }
 
@@ -17,7 +15,7 @@ function ProtectedRouter({
 }: IProtectedRouter) {
   const { session } = useSessionStore();
 
-  let userRole: TRoleLevel = "admin";
+  let userRole: Role = "admin";
 
   if (session && !session?.admin) userRole = "member";
   if (!session) userRole = "public";

@@ -1,4 +1,3 @@
-import { IAuthSession } from "@/types/auth";
 import { create } from "zustand";
 
 type TStore = {

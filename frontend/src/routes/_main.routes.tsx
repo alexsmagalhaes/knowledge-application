@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "@/pages/dashboard";
+import Dashboard from "@/pages/dashboard/page";
 import ProtectedRouter from "./protected.routes";
-import Login from "@/pages/auth";
+import Login from "@/pages/auth/page";
 
 function Outlet() {
   return (
@@ -12,7 +12,7 @@ function Outlet() {
           element={
             <ProtectedRouter
               allowedRoles={["admin", "member"]}
-              fallback={"/login"}
+              fallback={"/auth"}
             >
               <Dashboard />
             </ProtectedRouter>
@@ -20,7 +20,7 @@ function Outlet() {
         />
 
         <Route
-          path="/login"
+          path="/auth"
           element={
             <ProtectedRouter allowedRoles={["public"]} fallback={"/"}>
               <Login />
