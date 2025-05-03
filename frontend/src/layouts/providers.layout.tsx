@@ -4,6 +4,7 @@ import { ReactNode, useEffect } from "react";
 import theme from "@/_theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import useAuth from "@/hooks/use-auth";
+import { BrowserRouter } from "react-router-dom";
 
 interface IProvider {
   children: ReactNode;
@@ -43,7 +44,10 @@ function ProvidersLayout({ children }: IProvider) {
   return (
     <MuiProvider>
       <QueryProvider>
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          {" "}
+          <BrowserRouter>{children}</BrowserRouter>
+        </SessionProvider>
       </QueryProvider>
     </MuiProvider>
   );
