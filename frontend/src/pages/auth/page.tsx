@@ -1,4 +1,4 @@
-import AuthForm from "@/sections/auth/auth-form";
+import AuthForm from "@/pages/auth/sections/auth-form.section";
 
 function Login() {
   return (

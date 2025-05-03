@@ -15,6 +15,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import useSnack from "@/hooks/use-snack";
 import { useModalStore } from "@/store/use-modal.store";
+import Footer from "@/components/ui/footer";
 
 function ModalRoot() {
   const { isOpen, content, close } = useModalStore();
@@ -24,7 +25,7 @@ function ModalRoot() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width:"100%",
+    width: "100%",
     p: 0,
     maxWidth: "calc(100% - 2rem)",
   };
@@ -85,7 +86,17 @@ interface IComponentsLayout {
 function ComponentsLayout({ children }: IComponentsLayout) {
   return (
     <>
-      {children}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
+        {children}
+        <Footer />
+      </Box>
+
       <SnackRoot />
       <ModalRoot />
     </>
