@@ -25,11 +25,11 @@ export default function AuthFormCard() {
 
   return (
     <Paper
-      elevation={12}
       sx={{
         borderTop: "0.25rem #911892 solid",
         maxWidth: { xs: "none", md: "36.25rem" },
         width: "100%",
+        boxShadow: "0px 4px 48px 0px rgba(0, 0, 0, 0.02)",
       }}
     >
       <Box
