@@ -69,13 +69,13 @@ const theme = createTheme({
 
   palette: {
     primary: {
-      main: deepPurple[600],
+      main: deepPurple[700],
     },
     secondary: {
-      main: deepPurple[600],
+      main: deepPurple[700],
     },
     background: {
-      default: "white",
+      default: grey[200],
     },
   },
 });
