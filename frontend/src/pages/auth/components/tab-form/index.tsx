@@ -1,9 +1,6 @@
-import { Tab, TabProps } from "@mui/material";
+import { Tab } from "@mui/material";
 import { grey } from "@mui/material/colors";
-
-type TTab = TabProps & {
-  title?: string;
-};
+import { TTab } from "./tab-form.type";
 
 function TabForm({ ...props }: TTab) {
   return (

@@ -1,18 +1,22 @@
 import { Box, Paper, Tabs, Typography } from "@mui/material";
-import { ReactElement, SetStateAction, useState } from "react";
-import TabForm from "./tab";
+import { SetStateAction, useState } from "react";
+import TabForm from "../tab-form";
 import { grey } from "@mui/material/colors";
+import TabLogin from "../login-form";
+import TabRegister from "../register-form";
 
-type TTab = {
-  title: string;
-  component: ReactElement;
-};
+const tabs = [
+  {
+    title: "Realizar login",
+    component: <TabLogin />,
+  },
+  {
+    title: "Faça seu cadastro",
+    component: <TabRegister />,
+  },
+];
 
-interface IAuthFormCard {
-  tabs: TTab[];
-}
-
-export default function AuthFormCard({ tabs }: IAuthFormCard) {
+export default function AuthFormCard() {
   const [value, setValue] = useState(0);
 
   const handleChange = (_event: any, newValue: SetStateAction<number>) => {
@@ -24,18 +28,17 @@ export default function AuthFormCard({ tabs }: IAuthFormCard) {
       elevation={12}
       sx={{
         borderTop: "0.25rem #911892 solid",
-        maxWidth: "36.25rem",
+        maxWidth: { xs: "none", md: "36.25rem" },
         width: "100%",
       }}
     >
       <Box
-        maxWidth="sm"
         sx={{
-          p: { xs: 2, md: 3, lg: 4, xl: 4 },
+          p: { xs: 2, md: 3 },
           pb: { xs: 0, md: 0, lg: 0, xl: 0 },
           display: "flex",
           flexDirection: "column",
-          gap: { xs: 1.5, md: 1.5, lg: 2, xl: 2 },
+          gap: { xs: 1.5 },
           borderBottom: "solid 1px",
           borderColor: grey[400],
         }}
