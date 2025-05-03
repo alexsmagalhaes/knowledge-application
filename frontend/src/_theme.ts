@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { grey } from "@mui/material/colors";
+import { deepPurple, grey } from "@mui/material/colors";
 
 const theme = createTheme({
   components: {
@@ -69,13 +69,13 @@ const theme = createTheme({
 
   palette: {
     primary: {
-      main: "#6632C9",
+      main: deepPurple[600],
     },
     secondary: {
-      main: "#6632C9",
+      main: deepPurple[600],
     },
     background: {
-      default: '#F2F3F5', 
+      default: "white",
     },
   },
 });
