@@ -1,9 +1,6 @@
-import { Box, TextField, TextFieldProps, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
-
-type TInputText = TextFieldProps & {
-  topLabel?: string;
-};
+import { TInputText } from "./input.type";
 
 function Input({ topLabel, ...props }: TInputText) {
   return (
