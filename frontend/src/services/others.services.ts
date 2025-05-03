@@ -1,4 +1,3 @@
-import { Stat } from "@/types/other";
 import { httpClient } from "../libs/axios/http-request";
 
 type TStat = Stat;

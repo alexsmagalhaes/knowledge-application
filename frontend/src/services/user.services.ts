@@ -1,4 +1,3 @@
-import { User } from "@/types/user";
 import { httpClient } from "../libs/axios/http-request";
 
 export const getAllUsersService = async () => {

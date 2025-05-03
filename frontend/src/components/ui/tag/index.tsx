@@ -10,6 +10,7 @@ function Tag({ text }: ITag) {
         fontWeight: 600,
         fontSize: "0.75rem",
         height: "1.375rem",
+        px: "0.375rem",
         borderRadius: 0.5,
         display: "flex",
         justifyContent: "center",

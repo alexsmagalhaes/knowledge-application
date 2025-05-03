@@ -1,4 +1,3 @@
-import { IAuthSession } from "@/types/auth";
 import { httpClient } from "../libs/axios/http-request";
 
 type TLogin = {

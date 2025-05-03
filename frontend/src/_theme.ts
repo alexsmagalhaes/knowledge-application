@@ -12,7 +12,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Aspekta, sans-serif",
+    fontFamily: "Aspekta Variable, sans-serif",
     allVariants: {
       color: grey[800],
       margin: "0px",
@@ -20,37 +20,37 @@ const theme = createTheme({
     },
 
     h1: {
-      lineHeight: 1.2,
+      lineHeight: 1.3,
       color: grey[900],
       "@media (min-width:600px)": { fontSize: "22px" }, // tablet
       "@media (min-width:900px)": { fontSize: "24px" }, // desktop
     },
     h2: {
-      fontSize: "16px",
+      lineHeight: 1.3,
       color: grey[900],
       "@media (min-width:600px)": { fontSize: "18px" },
       "@media (min-width:900px)": { fontSize: "22px" },
     },
     h3: {
-      fontSize: "15px",
+      lineHeight: 1.3,
       color: grey[900],
       "@media (min-width:600px)": { fontSize: "17px" },
       "@media (min-width:900px)": { fontSize: "20px" },
     },
     h4: {
-      fontSize: "14px",
+      lineHeight: 1.3,
       color: grey[900],
       "@media (min-width:600px)": { fontSize: "16px" },
       "@media (min-width:900px)": { fontSize: "18px" },
     },
     h5: {
-      fontSize: "13px",
+      lineHeight: 1.3,
       color: grey[900],
       "@media (min-width:600px)": { fontSize: "14px" },
       "@media (min-width:900px)": { fontSize: "16px" },
     },
     h6: {
-      fontSize: "12px",
+      lineHeight: 1.3,
       color: grey[900],
       "@media (min-width:600px)": { fontSize: "14px" },
       "@media (min-width:900px)": { fontSize: "14px" },
