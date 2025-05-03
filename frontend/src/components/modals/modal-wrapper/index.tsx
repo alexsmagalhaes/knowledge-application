@@ -29,6 +29,7 @@ function ModalWrapper({ children, content, size = "sm" }: IModalWrapper) {
 
   return (
     <Box
+      component={"aside"}
       sx={{
         overflow: "hidden",
         width: "100%",
@@ -40,14 +41,16 @@ function ModalWrapper({ children, content, size = "sm" }: IModalWrapper) {
     >
       <Box
         sx={{
-          p: { xs: 2, md: 2, lg: 2.5, xl: 2.5 },
+          px: { xs: 2, md: 2.5 },
+          py: 2,
+          minHeight: "4rem",
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "start",
+          alignItems: "center",
           gap: 2,
         }}
       >
-        <Typography sx={{ fontSize: "1.125rem", fontWeight: 500 }} variant="h2">
+        <Typography sx={{ fontWeight: 500 }} variant="h5">
           {content.title}
         </Typography>
         <Button
@@ -67,14 +70,14 @@ function ModalWrapper({ children, content, size = "sm" }: IModalWrapper) {
           borderBottom: "1px solid",
           borderTop: "1px solid",
           borderColor: grey[400],
-          p: { xs: 2, md: 2, lg: 2.5, xl: 2.5 },
+          p: 2,
         }}
       >
         {children}
       </Box>
       <Box
         sx={{
-          p: { xs: 2, md: 2, lg: 2.5, xl: 2.5 },
+          p: { xs: 2, md: 2.5 },
         }}
       >
         <Typography sx={{ fontSize: "0.6875rem" }}>

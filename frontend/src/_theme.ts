@@ -20,39 +20,40 @@ const theme = createTheme({
     },
 
     h1: {
-      fontSize: "4rem",
       lineHeight: 1.2,
       color: grey[900],
-      "@media (max-width:1536px)": { fontSize: "3.5rem" },
-      "@media (max-width:1200px)": { fontSize: "3rem" },
-      "@media (max-width:900px)": { fontSize: "2.5rem" },
-      "@media (max-width:600px)": { fontSize: "2rem" },
+      "@media (min-width:600px)": { fontSize: "22px" }, // tablet
+      "@media (min-width:900px)": { fontSize: "24px" }, // desktop
     },
     h2: {
-      fontSize: "3rem",
+      fontSize: "16px",
       color: grey[900],
-      "@media (max-width:1200px)": { fontSize: "2.5rem" },
-      "@media (max-width:900px)": { fontSize: "2rem" },
-      "@media (max-width:600px)": { fontSize: "1.75rem" },
+      "@media (min-width:600px)": { fontSize: "18px" },
+      "@media (min-width:900px)": { fontSize: "22px" },
     },
     h3: {
-      fontSize: "2rem",
+      fontSize: "15px",
       color: grey[900],
-      "@media (max-width:900px)": { fontSize: "1.75rem" },
-      "@media (max-width:600px)": { fontSize: "1.5rem" },
+      "@media (min-width:600px)": { fontSize: "17px" },
+      "@media (min-width:900px)": { fontSize: "20px" },
     },
     h4: {
-      fontSize: "1.75rem",
+      fontSize: "14px",
       color: grey[900],
-      "@media (max-width:600px)": { fontSize: "1.5rem" },
+      "@media (min-width:600px)": { fontSize: "16px" },
+      "@media (min-width:900px)": { fontSize: "18px" },
     },
     h5: {
-      fontSize: "1.5rem",
+      fontSize: "13px",
       color: grey[900],
+      "@media (min-width:600px)": { fontSize: "14px" },
+      "@media (min-width:900px)": { fontSize: "16px" },
     },
     h6: {
-      fontSize: "1.5rem",
+      fontSize: "12px",
       color: grey[900],
+      "@media (min-width:600px)": { fontSize: "14px" },
+      "@media (min-width:900px)": { fontSize: "14px" },
     },
 
     body1: {

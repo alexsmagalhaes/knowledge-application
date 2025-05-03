@@ -1,7 +1,7 @@
 import useModal from "@/hooks/use-modal";
 import { useSessionStore } from "@/store/use-session.store";
 import { Box, Link as MuiLink, darken, Typography } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
+import { deepPurple, grey } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -13,7 +13,7 @@ function Footer() {
       component="footer"
       sx={{
         color: "white",
-        backgroundColor: darken(deepPurple[900], 0.6),
+        backgroundColor: darken(grey[900], 0.1),
         px: { xs: 2, md: 3 },
         display: { xs: "grid", md: "flex" },
         gridTemplateColumns: { xs: "1fr 1fr", md: "none" }, // define 2 colunas no xs

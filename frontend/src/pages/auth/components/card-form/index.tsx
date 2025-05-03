@@ -45,8 +45,9 @@ export default function AuthFormCard() {
       >
         <Box>
           <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, marginBottom: "0.25rem", fontSize: 22 }}
+            variant="h3"
+            component="h1"
+            sx={{ fontWeight: 700, marginBottom: "0.25rem"}}
           >
             Bem-vindo(a) ao knowledger.AI!
           </Typography>
