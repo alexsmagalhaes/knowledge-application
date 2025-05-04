@@ -26,6 +26,7 @@ function ModalRoot() {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "100%",
+    pointerEvents: "none",
     p: 0,
     maxWidth: "calc(100% - 2rem)",
   };

@@ -37,6 +37,7 @@ function ModalWrapper({ children, content, size = "sm" }: IModalWrapper) {
         borderRadius: 1,
         maxWidth: sizes[size],
         mx: "auto",
+        pointerEvents: "auto",
       }}
     >
       <Box
