@@ -15,8 +15,8 @@ function Input({ topLabel, ...props }: TInputText) {
         slotProps={{
           input: {
             sx: {
-              height: 40,
-              paddingX: "0rem",
+              height: props.multiline ? "auto" : 40,
+              paddingX: props.multiline ? "0.875rem" : 0,
               borderWidth: "2px",
               color: grey[900],
             },
