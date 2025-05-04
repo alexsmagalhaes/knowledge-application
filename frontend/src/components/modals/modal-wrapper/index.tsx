@@ -38,6 +38,8 @@ function ModalWrapper({ children, content, size = "sm" }: IModalWrapper) {
         maxWidth: sizes[size],
         mx: "auto",
         pointerEvents: "auto",
+        maxHeight: "90svh",
+        overflowY: "auto",
       }}
     >
       <Box
