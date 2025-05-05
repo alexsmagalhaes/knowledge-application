@@ -1,3 +1,4 @@
+import SupportModal from "@/components/modals/support";
 import useModal from "@/hooks/use-modal";
 import { useSessionStore } from "@/store/use-session.store";
 import { Box, Link as MuiLink, darken, Typography } from "@mui/material";
@@ -6,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   const { session } = useSessionStore();
-  const { open } = useModal(<></>);
+  const { open } = useModal(<SupportModal/>);
 
   return (
     <Box
@@ -16,7 +17,7 @@ function Footer() {
         backgroundColor: darken(grey[900], 0.1),
         px: { xs: 2, md: 3 },
         display: { xs: "grid", md: "flex" },
-        gridTemplateColumns: { xs: "1fr 1fr", md: "none" }, // define 2 colunas no xs
+        gridTemplateColumns: { xs: "1fr 1fr", md: "none" },
         flexDirection: { md: "row" },
         gap: 2,
         fontSize: "0.75rem",
