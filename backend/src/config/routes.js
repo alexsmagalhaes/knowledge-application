@@ -72,4 +72,7 @@ module.exports = (app) => {
 
   const getStats = app.src.api.stat.get;
   app.route("/stats").all(protectedRoute).get(getStats);
+
+  const postSupport = app.src.api.support.save;
+  app.route("/support").post(postSupport);
 };
