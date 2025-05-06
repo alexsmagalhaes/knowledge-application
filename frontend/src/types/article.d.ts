@@ -1,8 +1,9 @@
 type Article = {
   id: number;
-  name: string;
+  title: string;
   description: string;
   content?: string;
   imageUrl?: string;
   author?: string;
+  categories: string[];
 };
