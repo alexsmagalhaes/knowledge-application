@@ -1,9 +1,12 @@
-import SupportModal from "@/components/modals/support";
+import { lazy } from "react";
 import useModal from "@/hooks/use-modal";
 import { useSessionStore } from "@/store/use-session.store";
 import { Box, Link as MuiLink, darken, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { Link } from "react-router-dom";
+
+//lazy loading
+const SupportModal = lazy(() => import("@/components/modals/support"));
 
 function Footer() {
   const { session } = useSessionStore();

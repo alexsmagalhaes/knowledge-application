@@ -10,12 +10,14 @@ import {
   Theme,
 } from "@mui/material";
 
-import { ReactNode } from "react";
+import { lazy, ReactNode } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-
 import useSnack from "@/hooks/use-snack";
 import { useModalStore } from "@/store/use-modal.store";
-import Footer from "@/components/ui/footer";
+
+//lazy loading
+const Footer = lazy(() => import("@/components/ui/footer"));
+const Navbar = lazy(() => import("@/components/ui/navbar"));
 
 function ModalRoot() {
   const { isOpen, content, close } = useModalStore();
@@ -94,6 +96,7 @@ function ComponentsLayout({ children }: IComponentsLayout) {
           minHeight: "100vh",
         }}
       >
+        <Navbar />
         {children}
         <Footer />
       </Box>
