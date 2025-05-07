@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   const { session } = useSessionStore();
-  const { open } = useModal(<SupportModal/>);
+  const { open } = useModal(<SupportModal />);
 
   return (
     <Box
@@ -39,15 +39,16 @@ function Footer() {
         </Typography>{" "}
         - Projeto de estudo inspirado no curso da cod3r.com.br
       </Typography>
-      <Typography
+      <Box
         sx={{
+          width: { xs: "100%", md: "0.0625rem" },
+          height: { xs: "0.0625rem", md: "auto" },
           opacity: 0.4,
-          color: "inherit",
-          display: { xs: "none", md: "block" },
+          bgcolor: "white",
+          alignSelf: "stretch",
+          gridColumn: { xs: "span 2", md: "auto" },
         }}
-      >
-        |
-      </Typography>{" "}
+      />
       {session && (
         <MuiLink component={Link} to={"/"} sx={{ color: "inherit" }}>
           Dashboard
