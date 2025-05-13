@@ -36,6 +36,7 @@ function Footer() {
         }}
       >
         <Typography
+          component={"span"}
           sx={{ fontWeight: 700, display: "inline", color: "inherit" }}
         >
           Knowledger.AI
