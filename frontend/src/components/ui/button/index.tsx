@@ -75,6 +75,7 @@ function Button({
           border: getBorder(),
           "&:hover": {
             backgroundColor: getHoverBackground(),
+            boxShadow: "none"
           },
           fontWeight: 600,
           minWidth: 0,
